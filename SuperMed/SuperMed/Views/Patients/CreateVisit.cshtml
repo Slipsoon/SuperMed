@@ -1,0 +1,16 @@
+﻿@model SuperMed.Models.ViewModels.CreateVisitViewModel
+
+@{
+    ViewData["Title"] = "Nowa wizyta";
+}
+
+<h3>Zarejestruj nową wizytę</h3>
+
+<a asp-controller="Patients" asp-action="Index">← Wróć</a>
+
+<hr/>
+<div class="form-group">
+<div class="col-md-10">
+    @Html.DropDownListFor(m=>m.Doctor, Model.Doctors, "Wybierz doktora z listy dostępnych", new {@class="form-control"})
+</div>
+</div>
