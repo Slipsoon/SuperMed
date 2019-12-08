@@ -1,79 +1,32 @@
-﻿@{
+﻿@model SuperMed.Models.ViewModels.DoctorsViewModel
+@using System.Globalization
+@{
     ViewData["Title"] = "Panel doktora";
 }
 
 <div class="row">
     <div class="col-sm-8">
         <h3>Witamy panie doktorze, życzymy miłego dnia.</h3>
-        <h6>Dzisiaj jest <b>poniedziałek</b>, 16 lipca 2019</h6>
+        <h6>Dzisiaj jest <em>@DateTime.Now.ToString("D", new CultureInfo("PL-pl"))</em></h6>
         <hr />
         <h4>Lista wizyt na dzisiaj:</h4>
         <ul class="list-group">
-            <li class="list-group-item disabled">
-                <button type="button" class="btn btn btn-outline-secondary">8:00</button>&nbsp;
-                Joanna Kopczyńska
-                <button type="button" class="btn btn-light float-right">Otwórz</button>
-            </li>
-            <li class="list-group-item">
-                <button type="button" class="btn btn-outline-primary">8:15</button>&nbsp;
-                Kazimierz Nowosielski
-                <button type="button" class="btn btn-primary float-right">Otwórz</button>
-            </li>
-            <li class="list-group-item">
-                <button type="button" class="btn btn-outline-primary">8:35</button>&nbsp;
-                Marcin Szwoch
-                <button type="button" class="btn btn-primary float-right">Otwórz</button>
-            </li>
-            <li class="list-group-item">
-                <button type="button" class="btn btn-outline-primary">9:00</button>&nbsp;
-                Piotr Tomasik
-                <button type="button" class="btn btn-primary float-right">Otwórz</button>
-            </li>
-            <li class="list-group-item">
-                <button type="button" class="btn btn-outline-primary">9:15</button>&nbsp;
-                Katarzyna Szatka
-                <button type="button" class="btn btn-primary float-right">Otwórz</button>
-            </li>
-            <li class="list-group-item">
-                <button type="button" class="btn btn-outline-primary">8:15</button>&nbsp;
-                Kazimierz Nowosielski
-                <button type="button" class="btn btn-primary float-right">Otwórz</button>
-            </li>
-            <li class="list-group-item">
-                <button type="button" class="btn btn-outline-primary">8:35</button>&nbsp;
-                Marcin Szwoch
-                <button type="button" class="btn btn-primary float-right">Otwórz</button>
-            </li>
-            <li class="list-group-item">
-                <button type="button" class="btn btn-outline-primary">9:00</button>&nbsp;
-                Piotr Tomasik
-                <button type="button" class="btn btn-primary float-right">Otwórz</button>
-            </li>
-            <li class="list-group-item">
-                <button type="button" class="btn btn-outline-primary">9:15</button>&nbsp;
-                Katarzyna Szatka
-                <button type="button" class="btn btn-primary float-right">Otwórz</button>
-            </li>
-            <li class="list-group-item">
-                <button type="button" class="btn btn-outline-primary">8:15</button>&nbsp;
-                Kazimierz Nowosielski
-                <button type="button" class="btn btn-primary float-right">Otwórz</button>
-            </li>
-            <li class="list-group-item">
-                <button type="button" class="btn btn-outline-primary">8:35</button>&nbsp;
-                Marcin Szwoch
-                <button type="button" class="btn btn-primary float-right">Otwórz</button>
-            </li>
-            <li class="list-group-item">
-                <button type="button" class="btn btn-outline-primary">9:00</button>&nbsp;
-                Piotr Tomasik
-                <button type="button" class="btn btn-primary float-right">Otwórz</button>
-            </li>
-            <li class="list-group-item">
-                <button type="button" class="btn btn-outline-primary">9:15</button>&nbsp;
-                Katarzyna Szatka
-                <button type="button" class="btn btn-primary float-right">Otwórz</button>
-            </li>
+
+            @if (@Model.Appointments == null)
+            {
+                <li>Nie masz na dzisiaj żadnych wizyt.</li>
+            }
+            else
+            {
+                foreach (var modelAppointment in @Model.Appointments)
+                {
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-outline-primary">@modelAppointment.StartDateTime.ToShortTimeString()</button>&nbsp;
+                        @modelAppointment.Patient.Name
+                        <button type="button" class="btn btn-primary float-right">Otwórz</button>
+                    </li>
+                }
+            }
         </ul>
 
     </div>

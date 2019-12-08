@@ -20,9 +20,9 @@ namespace SuperMed.DAL.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Task<Patient> Get(int id)
+        public async Task<Patient> Get(int id)
         {
-            throw new System.NotImplementedException();
+            return await _dbContext.Patients.FindAsync(id);
         }
 
         public async Task<Patient> GetByName(string name)

@@ -9,6 +9,9 @@ namespace SuperMed.Models.ViewModels
         [Required]
         public string Doctor { get; set; }
 
+        [Required]
+        public string Description { get; set; }
+
         public IEnumerable<SelectListItem> Doctors { get; set; }
     }
 }

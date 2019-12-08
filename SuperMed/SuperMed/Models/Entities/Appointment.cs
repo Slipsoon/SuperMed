@@ -15,6 +15,8 @@ namespace SuperMed.Models.Entities
 
         public int DoctorId { get; set; }
         public Doctor Doctor { get; set; }
+
+        public string Description { get; set; }
     }
 
     public enum Status

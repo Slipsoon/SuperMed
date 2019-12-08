@@ -40,6 +40,7 @@ namespace SuperMed
             services.AddScoped<IPatientsRepository, PatientsRepository>();
             services.AddScoped<IDoctorsRepository, DoctorsRepository>();
             services.AddScoped<ISpecializationsRepository, SpecializationsRepository>();
+            services.AddScoped<IAppointmentsRepository, AppointmentsRepository>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();

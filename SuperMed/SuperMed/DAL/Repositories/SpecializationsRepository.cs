@@ -52,5 +52,10 @@ namespace SuperMed.DAL.Repositories
         {
             throw new System.NotImplementedException();
         }
+
+        public async Task<int> Commit()
+        {
+            return await _dbContext.SaveChangesAsync();
+        }
     }
 }

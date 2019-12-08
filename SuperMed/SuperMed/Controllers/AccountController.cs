@@ -130,9 +130,15 @@ namespace SuperMed.Controllers
 
                 var signInResult = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
 
-                if (signInResult.Succeeded)
-                {
-                    var spec = await _specializationsRepository.Add(new Specialization {Name = model.Specialization});
+                if (signInResult.Succeeded) 
+                { 
+                    await _specializationsRepository.Add(
+                        new Specialization
+                        {
+                            Name = model.Specialization
+                        });
+
+                    var docsSpec = await _specializationsRepository.GetByName(model.Specialization);
 
                     var doctor = new Doctor
                     {
@@ -140,7 +146,7 @@ namespace SuperMed.Controllers
                         FirstName = model.FirstName,
                         LastName = model.LastName,
                         Phone = model.Phone,
-                        Specialization = spec
+                        Specialization = docsSpec
                     };
 
                     await _doctorsRepository.Add(doctor);

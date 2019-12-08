@@ -18,5 +18,19 @@ namespace SuperMed.DAL
         public DbSet<Specialization> Specializations { get; set; }
 
         public DbSet<Appointment> Appointments { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<Doctor>(b =>
+            {
+                b.ToTable("Doctors");
+                b.HasKey(x => x.Id);
+                b.HasOne(x => x.Specialization);
+            });
+
+            builder.Entity<Specialization>(b => { b.HasKey(x => x.Id); });
+        }
     }
 }

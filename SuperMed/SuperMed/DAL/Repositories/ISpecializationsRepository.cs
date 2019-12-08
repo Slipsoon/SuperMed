@@ -12,5 +12,6 @@ namespace SuperMed.DAL.Repositories
         Task<Specialization> Add(Specialization specialization);
         Task<Specialization> Update(Specialization specialization);
         Task<Specialization> Delete(int id);
+        Task<int> Commit();
     }
 }
